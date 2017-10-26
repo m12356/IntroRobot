@@ -94,6 +94,7 @@ void APP_EventHandler(EVNT_Handle event) {
     break;
 #if PL_CONFIG_NOF_KEYS>=1
   case EVNT_SW1_PRESSED:
+	  LED2_Neg();
     BtnMsg(1, "pressed");
      break;
 #endif
@@ -181,17 +182,22 @@ static void APP_AdoptToHardware(void) {
 
 void APP_Start(void) {
   PL_Init();
+  SHELL_Init();
   APP_AdoptToHardware();
-
+  CLS1_SendStr("SW2 pressed!\r\n", CLS1_GetStdio()->stdOut);
   __asm volatile("cpsie i"); /* enable interrupts */
   for(;;) {
-    LED_On(1);
+  /*  LED_On(1);
     //LED_Neg(1);
 	// LEDPin1_NegVal();
 	WAIT1_Waitms(300);
+
    LED_Off(1);
    WAIT1_Waitms(300);
+  */
 
+      KEY_Scan();
+      EVNT_HandleEvent(APP_EventHandler,1);
   }
 }
 
