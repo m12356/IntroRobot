@@ -10,6 +10,7 @@
 #if PL_CONFIG_HAS_TRIGGER
 #include "Trigger.h"
 #include "CS1.h"
+#include "Led.h"
 #include <stddef.h> /* for NULL */
 
 /*! \brief Descriptor for a trigger. */
@@ -91,4 +92,18 @@ void TRG_Init(void) {
   }
 }
 
+void LED_HeartBeat(void *p)
+{
+	(void) p;
+	LED_Neg(1);
+	TRG_SetTrigger(TRG_LED_BLINK,500/TRG_TICKS_MS,LED_HeartBeat,NULL);
+}
+
+
+
+ void LED_OnAtStart(void *p)
+ {
+	 (void) p;
+	 LED_On(1);
+ }
 #endif /* PL_CONFIG_HAS_TRIGGER */

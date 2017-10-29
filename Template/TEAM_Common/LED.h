@@ -89,6 +89,7 @@
 
 void LED_Init(void); /* driver initialization */
 void LED_Deinit(void); /* driver deinitialization */
+
 #endif /* PL_CONFIG_HAS_LEDS */
 
 #endif /* SOURCES_INTRO_COMMON_MASTER_LED_H_ */

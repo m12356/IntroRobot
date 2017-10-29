@@ -88,9 +88,9 @@ void QuadInt_OnInterrupt(void)
 **     Returns     : Nothing
 ** ===================================================================
 */
-void TI1_OnInterrupt(void)
+void TI1_OnInterrupt(void) // Timer interrupt 1ms
 {
-  /* Write your code here ... */
+	TRG_AddTick();
 }
 
 /* END Events */

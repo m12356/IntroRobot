@@ -55,6 +55,8 @@ void BUZ_Init(void);
  * \brief De-initialization of the driver
  */
 void BUZ_Deinit(void);
+void My_BombBeep(void *p);
+
 #endif /* PL_CONFIG_HAS_BUZZER */
 
 #endif /* BUZZER_H_ */

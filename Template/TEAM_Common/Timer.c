@@ -24,6 +24,8 @@
 
 void TMR_OnInterrupt(void) {
   static unsigned int cntr = 0;
+
+
   /* this one gets called from an interrupt!!!! */
   /*! \todo Add code for a blinking LED here */
 }

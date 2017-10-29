@@ -27,6 +27,7 @@ typedef struct {
   int freq; /* frequency */
   int ms; /* milliseconds */
 } BUZ_Tune;
+int count = 1000;
 
 static const BUZ_Tune MelodyWelcome[] =
 { /* freq, ms */
@@ -183,6 +184,32 @@ uint8_t BUZ_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
 
 void BUZ_Deinit(void) {
   /* nothing to do */
+}
+
+int getCount()
+{
+	return count;
+}
+
+void setCount(int cnt)
+{
+	count = cnt;
+}
+
+void My_BombBeep(void *p)
+{
+(void) p;
+	 BUZ_Beep(700,100);
+	 if(getCount() > 100)
+	 {
+	 setCount(getCount()-100);
+	 }
+	 else
+	 {
+		 setCount(50);
+	 }
+
+	 TRG_SetTrigger(TRG_BOMB_BEEP,getCount()/TRG_TICKS_MS,My_BombBeep,NULL);
 }
 
 void BUZ_Init(void) {

@@ -12,6 +12,7 @@
 #include "LED.h"
 #include "WAIT1.h"
 #include "CS1.h"
+#include "Trigger.h"
 #include "KeyDebounce.h"
 #include "CLS1.h"
 #include "KIN1.h"
@@ -182,22 +183,15 @@ static void APP_AdoptToHardware(void) {
 
 void APP_Start(void) {
   PL_Init();
-  SHELL_Init();
   APP_AdoptToHardware();
-  CLS1_SendStr("SW2 pressed!\r\n", CLS1_GetStdio()->stdOut);
+
+
+  TRG_SetTrigger (TRG_LED_BLINK, 5000/TRG_TICKS_MS , LED_HeartBeat , NULL) ;
+  TRG_SetTrigger(TRG_BOMB_BEEP,0,My_BombBeep,NULL);
+
   __asm volatile("cpsie i"); /* enable interrupts */
   for(;;) {
-  /*  LED_On(1);
-    //LED_Neg(1);
-	// LEDPin1_NegVal();
-	WAIT1_Waitms(300);
-
-   LED_Off(1);
-   WAIT1_Waitms(300);
-  */
-
-      KEY_Scan();
-      EVNT_HandleEvent(APP_EventHandler,1);
+	  //BUZ_Beep(300000,10);
   }
 }
 

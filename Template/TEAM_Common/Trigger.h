@@ -20,6 +20,9 @@
 /*! \brief Triggers which can be used from the application */
 typedef enum {
   /*! \todo Extend the list of triggers as needed */
+  TRG_LED_BLINK,// My own Trigger
+  TRG_LED_ON,// My own Trigger
+  TRG_BOMB_BEEP,
   TRG_BUZ_BEEP, /*!< Buzzer beep */
   TRG_KEYPRESS, /*!< key debounce */
   TRG_BUZ_TUNE, /*!< buzzer tune */
@@ -53,6 +56,10 @@ void TRG_Deinit(void);
 
 /*!\brief Initializes the module. */
 void TRG_Init(void);
+
+
+void LED_OnAtStart(void *p);
+void LED_HeartBeat(void *p);
 
 #endif /* PL_CONFIG_HAS_TRIGGER */
 
