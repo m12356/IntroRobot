@@ -96,7 +96,7 @@ void LED_HeartBeat(void *p)
 {
 	(void) p;
 	LED_Neg(1);
-	TRG_SetTrigger(TRG_LED_BLINK,500/TRG_TICKS_MS,LED_HeartBeat,NULL);
+	TRG_SetTrigger(TRG_BOMB_BEEP,500/TRG_TICKS_MS,LED_HeartBeat,NULL);
 }
 
 

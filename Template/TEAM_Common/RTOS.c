@@ -12,10 +12,17 @@
 
 void RTOS_Init(void) {
   /*! \todo Create tasks here */
+
 }
 
 void RTOS_Deinit(void) {
   /* nothing needed for now */
 }
+
+
+
+
+
+
 
 #endif /* PL_CONFIG_HAS_RTOS */

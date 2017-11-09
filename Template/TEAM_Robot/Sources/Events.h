@@ -38,9 +38,11 @@
 #include "LEDPin2.h"
 #include "BitIoLdd2.h"
 #include "SW1.h"
-#include "BitIoLdd3.h"
+#include "ExtIntLdd1.h"
 #include "AS1.h"
 #include "ASerialLdd3.h"
+#include "FRTOS1.h"
+#include "RTOSCNTRLDD1.h"
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"
@@ -118,6 +120,79 @@ void QuadInt_OnInterrupt(void);
 ** ===================================================================
 */
 void TI1_OnInterrupt(void);
+
+void SW1_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  SW1_OnInterrupt (module Events)
+**
+**     Component   :  SW1 [ExtInt]
+**     Description :
+**         This event is called when an active signal edge/level has
+**         occurred.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationStackOverflowHook(TaskHandle_t pxTask, char *pcTaskName);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationStackOverflowHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         if enabled, this hook will be called in case of a stack
+**         overflow.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         pxTask          - Task handle
+**       * pcTaskName      - Pointer to task name
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationTickHook(void);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationTickHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, this hook will be called by the RTOS for every
+**         tick increment.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationIdleHook(void);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationIdleHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, this hook will be called when the RTOS is idle.
+**         This might be a good place to go into low power mode.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void FRTOS1_vApplicationMallocFailedHook(void);
+/*
+** ===================================================================
+**     Event       :  FRTOS1_vApplicationMallocFailedHook (module Events)
+**
+**     Component   :  FRTOS1 [FreeRTOS]
+**     Description :
+**         If enabled, the RTOS will call this hook in case memory
+**         allocation failed.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
 
 /* END Events */
 

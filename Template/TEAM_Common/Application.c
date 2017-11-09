@@ -98,6 +98,11 @@ void APP_EventHandler(EVNT_Handle event) {
 	  LED2_Neg();
     BtnMsg(1, "pressed");
      break;
+  case EVNT_SW1_LPRESSED:
+	  LED2_Neg();
+	  BtnMsg(1,"long pressed");
+	  break;
+
 #endif
     default:
       break;
@@ -181,18 +186,43 @@ static void APP_AdoptToHardware(void) {
 #endif
 }
 
+
+
+static void BlinkyTask(void *pvParameters)
+{
+
+	TickType_t xLastWakeTime = xTaskGetTickCount();
+	for(;;)
+	{
+		LED_Neg(1);
+		vTaskDelayUntil(&xLastWakeTime, 500/portTICK_PERIOD_MS);
+	}
+}
+
+
+
+
 void APP_Start(void) {
   PL_Init();
   APP_AdoptToHardware();
 
+BaseType_t res;
+xTaskHandle taskHndl;
+res = xTaskCreate(BlinkyTask,"Blinky",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl);
+if(res != pdPASS)
+{
 
-  TRG_SetTrigger (TRG_LED_BLINK, 5000/TRG_TICKS_MS , LED_HeartBeat , NULL) ;
-  TRG_SetTrigger(TRG_BOMB_BEEP,0,My_BombBeep,NULL);
+}
+
+vTaskStartScheduler();
+ // TRG_SetTrigger (TRG_BOMB_BEEP, 5000/TRG_TICKS_MS , LED_HeartBeat , NULL) ;
+  //TRG_SetTrigger(TRG_BOMB_BEEP,0,My_BombBeep,NULL);
 
   __asm volatile("cpsie i"); /* enable interrupts */
   for(;;) {
+	  EVNT_HandleEvent(APP_EventHandler,1);
 	  //BUZ_Beep(300000,10);
-  }
+	    }
 }
 
 
