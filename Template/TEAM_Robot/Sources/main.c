@@ -45,6 +45,7 @@
 #include "TU1.h"
 #include "CLS1.h"
 #include "RTT1.h"
+#include "SYS1.h"
 #include "TMOUT1.h"
 #include "USB1.h"
 #include "CDC1.h"
@@ -81,8 +82,7 @@ int main(void)
 {
   /* Write your local variable definition here */
 
-  /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
-  PE_low_level_init();
+  /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/  PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */

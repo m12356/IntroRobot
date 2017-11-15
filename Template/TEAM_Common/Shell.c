@@ -300,7 +300,10 @@ static uint32_t SHELL_val; /* used as demo value for shell */
 
 void SHELL_SendString(unsigned char *msg) {
 #if PL_CONFIG_HAS_SHELL_QUEUE
+	if(msg != NULL)
+	{
   SQUEUE_SendString(msg);
+	}
 #else
   CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
 #endif
@@ -385,8 +388,14 @@ static void ShellTask(void *pvParameters) {
     }
 #elif PL_CONFIG_HAS_SHELL_QUEUE /* !PL_CONFIG_SQUEUE_SINGLE_CHAR */
     {
-      /*! \todo Handle shell queue */
-   }
+    	unsigned char *msg = SQUEUE_ReceiveMessage();
+    	if(msg =! NULL)
+    	{
+    		CLS1_SendStr(msg,CLS1_GetStdio()->stdOut);
+    		vPortFree(msg);
+
+    	}
+    }
 #endif /* PL_CONFIG_HAS_SHELL_QUEUE */
     vTaskDelay(pdMS_TO_TICKS(10));
   } /* for */

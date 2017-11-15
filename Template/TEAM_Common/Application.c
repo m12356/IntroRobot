@@ -194,8 +194,12 @@ static void BlinkyTask(void *pvParameters)
 	TickType_t xLastWakeTime = xTaskGetTickCount();
 	for(;;)
 	{
+
 		LED_Neg(1);
 		vTaskDelayUntil(&xLastWakeTime, 500/portTICK_PERIOD_MS);
+
+		KEY_Scan();
+		EVNT_HandleEvent(APP_EventHandler,1);
 	}
 }
 
@@ -214,13 +218,13 @@ if(res != pdPASS)
 
 }
 
-vTaskStartScheduler();
+	vTaskStartScheduler();
  // TRG_SetTrigger (TRG_BOMB_BEEP, 5000/TRG_TICKS_MS , LED_HeartBeat , NULL) ;
   //TRG_SetTrigger(TRG_BOMB_BEEP,0,My_BombBeep,NULL);
 
   __asm volatile("cpsie i"); /* enable interrupts */
   for(;;) {
-	  EVNT_HandleEvent(APP_EventHandler,1);
+
 	  //BUZ_Beep(300000,10);
 	    }
 }
