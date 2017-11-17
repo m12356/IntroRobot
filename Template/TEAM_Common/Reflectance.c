@@ -339,7 +339,7 @@ REF_LineKind REF_GetLineKind(void) {
 static void REF_Measure(void) {
   ReadCalibrated(SensorCalibrated, SensorRaw);
   refCenterLineVal = ReadLine(SensorCalibrated, SensorRaw, REF_USE_WHITE_LINE);
-#if 1 || PL_CONFIG_HAS_LINE_FOLLOW
+#if 1 || PL_CONFIG_HAS_LINE_FOLLOW // Einschalten ob linie oder keine Linie, falls keine Linie 0 !!
   refLineKind = ReadLineKind(SensorCalibrated);
 #endif
 }

@@ -62,7 +62,7 @@ static void BtnMsg(int btn, const char *msg) {
   #if PL_CONFIG_HAS_SHELL_QUEUE
     uint8_t buf[48];
 
-    UTIL1_strcpy(buf, sizeof(buf), "Button pressed: ");
+    UTIL1_strcpy(buf, sizeof(buf), "Button ");
     UTIL1_strcat(buf, sizeof(buf), msg);
     UTIL1_strcat(buf, sizeof(buf), ": ");
     UTIL1_strcatNum32s(buf, sizeof(buf), btn);
@@ -195,13 +195,28 @@ static void BlinkyTask(void *pvParameters)
 	for(;;)
 	{
 
-		LED_Neg(1);
+		//LED_Neg(1);
 		vTaskDelayUntil(&xLastWakeTime, 500/portTICK_PERIOD_MS);
+
+
+	}
+}
+
+
+static void Startup(void *pvParameters)
+{
+
+	TickType_t xLastWakeTime = xTaskGetTickCount();
+	for(;;)
+	{
+
 
 		KEY_Scan();
 		EVNT_HandleEvent(APP_EventHandler,1);
+		vTaskDelayUntil(&xLastWakeTime, 500/portTICK_PERIOD_MS);
 	}
 }
+
 
 
 
@@ -218,6 +233,13 @@ if(res != pdPASS)
 
 }
 
+BaseType_t res1;
+xTaskHandle taskHndl1;
+res1 = xTaskCreate(Startup,"Startup",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl1);
+if(res1 != pdPASS)
+{
+
+}
 	vTaskStartScheduler();
  // TRG_SetTrigger (TRG_BOMB_BEEP, 5000/TRG_TICKS_MS , LED_HeartBeat , NULL) ;
   //TRG_SetTrigger(TRG_BOMB_BEEP,0,My_BombBeep,NULL);

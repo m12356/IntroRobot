@@ -300,10 +300,9 @@ static uint32_t SHELL_val; /* used as demo value for shell */
 
 void SHELL_SendString(unsigned char *msg) {
 #if PL_CONFIG_HAS_SHELL_QUEUE
-	if(msg != NULL)
-	{
+
   SQUEUE_SendString(msg);
-	}
+
 #else
   CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
 #endif
@@ -383,21 +382,24 @@ static void ShellTask(void *pvParameters) {
     RSTDIO_Print(SHELL_GetStdio()); /* dispatch incoming messages */
 #endif
 #if PL_CONFIG_HAS_SHELL_QUEUE && PL_CONFIG_SQUEUE_SINGLE_CHAR
-    {
-        /*! \todo Handle shell queue */
+    {unsigned char ch;
+
+    while((ch=SQUEUE_ReceiveChar()) && ch!='\0') {
+      ios[0].stdio->stdOut(ch); /* output on first channel */
     }
 #elif PL_CONFIG_HAS_SHELL_QUEUE /* !PL_CONFIG_SQUEUE_SINGLE_CHAR */
     {
-    	unsigned char *msg = SQUEUE_ReceiveMessage();
-    	if(msg =! NULL)
-    	{
-    		CLS1_SendStr(msg,CLS1_GetStdio()->stdOut);
-    		vPortFree(msg);
+          /*! \todo Handle shell queue */
+          const unsigned char *msg;
 
-    	}
-    }
+          msg = SQUEUE_ReceiveMessage();
+          if (msg!=NULL) {
+            CLS1_SendStr(msg, ios[0].stdio->stdOut);
+            vPortFree((void*)msg);
+          }
+        }
 #endif /* PL_CONFIG_HAS_SHELL_QUEUE */
-    vTaskDelay(pdMS_TO_TICKS(10));
+    vTaskDelay(pdMS_TO_TICKS(25));
   } /* for */
 }
 #endif /* PL_CONFIG_HAS_RTOS */
