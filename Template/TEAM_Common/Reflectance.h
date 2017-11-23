@@ -72,6 +72,8 @@ void REF_Deinit(void);
  */
 void REF_Init(void);
 
+void setStateToCalibrateByButton(void);
+
 #endif /* PL_CONFIG_HAS_REFLECTANCE */
 
 #endif /* REFLECTANCE_H_ */

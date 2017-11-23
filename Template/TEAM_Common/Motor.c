@@ -169,20 +169,20 @@ uint8_t MOT_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
   } else if (UTIL1_strcmp((char*)cmd, (char*)CLS1_CMD_STATUS)==0 || UTIL1_strcmp((char*)cmd, (char*)"motor status")==0) {
     MOT_PrintStatus(io);
     *handled = TRUE;
-  } else if (UTIL1_strcmp((char*)cmd, (char*)"motor L forward")==0) {
+  } else if (UTIL1_strcmp((char*)cmd, (char*)"motor l forward")==0) {
     MOT_SetDirection(&motorL, MOT_DIR_FORWARD);
     *handled = TRUE;
-  } else if (UTIL1_strcmp((char*)cmd, (char*)"motor R forward")==0) {
+  } else if (UTIL1_strcmp((char*)cmd, (char*)"motor r forward")==0) {
     MOT_SetDirection(&motorR, MOT_DIR_FORWARD);
     *handled = TRUE;
-  } else if (UTIL1_strcmp((char*)cmd, (char*)"motor L backward")==0) {
+  } else if (UTIL1_strcmp((char*)cmd, (char*)"motor l backward")==0) {
     MOT_SetDirection(&motorL, MOT_DIR_BACKWARD);
     *handled = TRUE;
-  } else if (UTIL1_strcmp((char*)cmd, (char*)"motor R backward")==0) {
+  } else if (UTIL1_strcmp((char*)cmd, (char*)"motor r backward")==0) {
     MOT_SetDirection(&motorR, MOT_DIR_BACKWARD);
     *handled = TRUE;
-  } else if (UTIL1_strncmp((char*)cmd, (char*)"motor L duty ", sizeof("motor L duty ")-1)==0) {
-    p = cmd+sizeof("motor L duty");
+  } else if (UTIL1_strncmp((char*)cmd, (char*)"motor l duty ", sizeof("motor l duty ")-1)==0) {
+    p = cmd+sizeof("motor l duty");
     if (UTIL1_xatoi(&p, &val)==ERR_OK && val >=-100 && val<=100) {
       MOT_SetSpeedPercent(&motorL, (MOT_SpeedPercent)val);
       *handled = TRUE;
@@ -190,8 +190,8 @@ uint8_t MOT_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
       CLS1_SendStr((unsigned char*)"Wrong argument, must be in the range -100..100\r\n", io->stdErr);
       res = ERR_FAILED;
     }
-  } else if (UTIL1_strncmp((char*)cmd, (char*)"motor R duty ", sizeof("motor R duty ")-1)==0) {
-    p = cmd+sizeof("motor R duty");
+  } else if (UTIL1_strncmp((char*)cmd, (char*)"motor r duty ", sizeof("motor r duty ")-1)==0) {
+    p = cmd+sizeof("motor r duty");
     if (UTIL1_xatoi(&p, &val)==ERR_OK && val >=-100 && val<=100) {
       MOT_SetSpeedPercent(&motorR, (MOT_SpeedPercent)val);
       *handled = TRUE;
@@ -210,8 +210,8 @@ void MOT_Deinit(void) {
 
 void MOT_Init(void) {
 #if MOTOR_HAS_INVERT
-  motorL.inverted = FALSE;
-  motorR.inverted = FALSE;
+  motorL.inverted = TRUE;
+  motorR.inverted = TRUE;
 #endif
   motorL.DirPutVal = DirLPutVal;
   motorR.DirPutVal = DirRPutVal;

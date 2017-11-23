@@ -167,6 +167,10 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
         cnt++;
       }
     }
+    if((uint16_t) timerVal > 500)
+    {
+    	break;
+    }
   } while(cnt!=REF_NOF_SENSORS);
   taskEXIT_CRITICAL();
   LED_IR_Off(); /* IR LED's off */
@@ -575,9 +579,18 @@ bool REF_IsReady(void) {
 static void ReflTask (void *pvParameters) {
   (void)pvParameters; /* not used */
   for(;;) {
-    REF_StateMachine();
+
+
+
+	REF_StateMachine();
     FRTOS1_vTaskDelay(10/portTICK_PERIOD_MS);
   }
+}
+
+
+void setStateToCalibrateByButton(void)
+{
+	REF_CalibrateStartStop();
 }
 
 void REF_Deinit(void) {

@@ -97,6 +97,8 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_SW1_PRESSED:
 	  LED2_Neg();
     BtnMsg(1, "pressed");
+    setStateToCalibrateByButton();
+
      break;
   case EVNT_SW1_LPRESSED:
 	  LED2_Neg();
