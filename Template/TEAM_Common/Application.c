@@ -220,6 +220,34 @@ static void Startup(void *pvParameters)
 }
 
 
+static void stayOnLine(void *pvParameters)
+{
+
+	TickType_t xLastWakeTime =  xTaskGetTickCount();
+	for(;;)
+	{
+		if(REF_IsReady())
+		{
+			if(REF_GetLineValue()>500)
+			{
+				MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),20);
+				MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),20);
+			}
+			else
+			{
+				MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),-40);
+				MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),40);
+				vTaskDelayUntil(&xLastWakeTime, 600/portTICK_PERIOD_MS);
+
+			}
+		}
+
+		vTaskDelayUntil(&xLastWakeTime, 100/portTICK_PERIOD_MS);
+
+	}
+}
+
+
 
 
 
@@ -242,6 +270,10 @@ if(res1 != pdPASS)
 {
 
 }
+
+BaseType_t res2;
+xTaskHandle taskHndl2;
+res2 = xTaskCreate(stayOnLine,"stayOnLine",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl2);
 	vTaskStartScheduler();
  // TRG_SetTrigger (TRG_BOMB_BEEP, 5000/TRG_TICKS_MS , LED_HeartBeat , NULL) ;
   //TRG_SetTrigger(TRG_BOMB_BEEP,0,My_BombBeep,NULL);
