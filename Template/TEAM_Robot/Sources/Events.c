@@ -74,6 +74,12 @@ void Cpu_OnNMIINT(void)
 */
 void QuadInt_OnInterrupt(void)
 {
+#if PL_CONFIG_HAS_QUADRATURE
+	Q4CRight_Sample();
+	Q4CLeft_Sample();
+
+#endif
+
   /* Write your code here ... */
 }
 
@@ -127,6 +133,7 @@ void TI1_OnInterrupt(void)
 {
 
 	TRG_AddTick();
+
 
   /* Write your code here ... */
 }
@@ -194,6 +201,7 @@ void FRTOS1_vApplicationTickHook(void)
 {
   /* Called for every RTOS tick. */
   /* Write your code here ... */
+	TACHO_Sample();
 }
 
 /*

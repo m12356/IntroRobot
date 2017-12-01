@@ -248,6 +248,32 @@ static void stayOnLine(void *pvParameters)
 }
 
 
+static void goToStart(void *pvParameters)
+{
+	TickType_t xLastWakeTime =  xTaskGetTickCount();
+	for(;;)
+	{
+		Q4CLeft_QuadCntrType startPos = Q4CLeft_GetPos();
+		MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),20);
+		MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),20);
+		vTaskDelayUntil(&xLastWakeTime, 3000/portTICK_PERIOD_MS);
+		while(startPos !=Q4CLeft_GetPos())
+
+		{
+			MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),-20);
+			MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),-20);
+
+		}
+
+			MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),0);
+			MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),0);
+			vTaskDelayUntil(&xLastWakeTime, 10000/portTICK_PERIOD_MS);
+
+
+	}
+
+}
+
 
 
 
@@ -274,7 +300,13 @@ if(res1 != pdPASS)
 BaseType_t res2;
 xTaskHandle taskHndl2;
 res2 = xTaskCreate(stayOnLine,"stayOnLine",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl2);
-	vTaskStartScheduler();
+
+
+BaseType_t res3;
+xTaskHandle taskHndl3;
+res3 = xTaskCreate(goToStart,"goToStart",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl3);
+
+vTaskStartScheduler();
  // TRG_SetTrigger (TRG_BOMB_BEEP, 5000/TRG_TICKS_MS , LED_HeartBeat , NULL) ;
   //TRG_SetTrigger(TRG_BOMB_BEEP,0,My_BombBeep,NULL);
 

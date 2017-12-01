@@ -3,7 +3,7 @@
   <Header>
     <Name>TEAM_Robot</Name>
     <SavedBy>Erich Styger</SavedBy>
-    <ModificationStamp>249</ModificationStamp>
+    <ModificationStamp>255</ModificationStamp>
     <Date>2016-02-29</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.2.RT7_b1550-0615</PEversion>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>869</ProjectCompNumb>
+    <ProjectCompNumb>920</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -20514,7 +20514,7 @@
           <ComponentUUID>com.freescale.processorexpert.ldd.timerunit_ldd</ComponentUUID>
           <BeanType>TimerUnit_LDD</BeanType>
           <Name>RTOSCNTRLDD1</Name>
-          <CompNumb>327</CompNumb>
+          <CompNumb>893</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>CLOCKS_LDD</IconName>
@@ -21831,7 +21831,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>100</Value>
+        <Value>1000</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -27165,7 +27165,7 @@
           <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
           <BeanType>BitIO</BeanType>
           <Name>LEDpin3</Name>
-          <CompNumb>45</CompNumb>
+          <CompNumb>894</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>BITIO</IconName>
@@ -27211,7 +27211,7 @@
                 <ComponentUUID>com.freescale.processorexpert.ldd.bitio_ldd</ComponentUUID>
                 <BeanType>BitIO_LDD</BeanType>
                 <Name>BitIoLdd5</Name>
-                <CompNumb>46</CompNumb>
+                <CompNumb>895</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
                 <IconName>PORT_LDD</IconName>
@@ -32400,8 +32400,8 @@
           <Repository>file:/${ProcessorExpert_loc}/Repositories/Kinetis_Repository</Repository>
           <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
           <BeanType>BitIO</BeanType>
-          <Name>C12</Name>
-          <CompNumb>78</CompNumb>
+          <Name>C11</Name>
+          <CompNumb>896</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>BITIO</IconName>
@@ -32415,7 +32415,7 @@
               <ItemSymbol>DeviceName</ItemSymbol>
               <ReadOnly>true</ReadOnly>
               <UserReadOnly>true</UserReadOnly>
-              <Value>C12</Value>
+              <Value>C11</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>_Pin</ItemSymbol>
@@ -32447,7 +32447,7 @@
                 <ComponentUUID>com.freescale.processorexpert.ldd.bitio_ldd</ComponentUUID>
                 <BeanType>BitIO_LDD</BeanType>
                 <Name>BitIoLdd16</Name>
-                <CompNumb>80</CompNumb>
+                <CompNumb>897</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
                 <IconName>PORT_LDD</IconName>
@@ -32996,7 +32996,7 @@
           <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
           <BeanType>BitIO</BeanType>
           <Name>C23</Name>
-          <CompNumb>79</CompNumb>
+          <CompNumb>898</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>BITIO</IconName>
@@ -33042,7 +33042,7 @@
                 <ComponentUUID>com.freescale.processorexpert.ldd.bitio_ldd</ComponentUUID>
                 <BeanType>BitIO_LDD</BeanType>
                 <Name>BitIoLdd17</Name>
-                <CompNumb>81</CompNumb>
+                <CompNumb>899</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
                 <IconName>PORT_LDD</IconName>
@@ -33791,8 +33791,8 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <Value>true</Value>
+        <Index>1</Index>
+        <Value>false</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>CounterType</ItemSymbol>
@@ -33835,8 +33835,8 @@
           <Repository>file:/${ProcessorExpert_loc}/Repositories/Kinetis_Repository</Repository>
           <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
           <BeanType>BitIO</BeanType>
-          <Name>C13</Name>
-          <CompNumb>85</CompNumb>
+          <Name>C12</Name>
+          <CompNumb>900</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>BITIO</IconName>
@@ -33850,7 +33850,7 @@
               <ItemSymbol>DeviceName</ItemSymbol>
               <ReadOnly>true</ReadOnly>
               <UserReadOnly>true</UserReadOnly>
-              <Value>C13</Value>
+              <Value>C12</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>_Pin</ItemSymbol>
@@ -33882,7 +33882,7 @@
                 <ComponentUUID>com.freescale.processorexpert.ldd.bitio_ldd</ComponentUUID>
                 <BeanType>BitIO_LDD</BeanType>
                 <Name>BitIoLdd18</Name>
-                <CompNumb>87</CompNumb>
+                <CompNumb>901</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
                 <IconName>PORT_LDD</IconName>
@@ -34430,8 +34430,8 @@
           <Repository>file:/${ProcessorExpert_loc}/Repositories/Kinetis_Repository</Repository>
           <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
           <BeanType>BitIO</BeanType>
-          <Name>C25</Name>
-          <CompNumb>86</CompNumb>
+          <Name>C24</Name>
+          <CompNumb>902</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>BITIO</IconName>
@@ -34445,7 +34445,7 @@
               <ItemSymbol>DeviceName</ItemSymbol>
               <ReadOnly>true</ReadOnly>
               <UserReadOnly>true</UserReadOnly>
-              <Value>C25</Value>
+              <Value>C24</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>_Pin</ItemSymbol>
@@ -34477,7 +34477,7 @@
                 <ComponentUUID>com.freescale.processorexpert.ldd.bitio_ldd</ComponentUUID>
                 <BeanType>BitIO_LDD</BeanType>
                 <Name>BitIoLdd19</Name>
-                <CompNumb>88</CompNumb>
+                <CompNumb>903</CompNumb>
                 <CompEnabled>true</CompEnabled>
                 <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
                 <IconName>PORT_LDD</IconName>
@@ -35704,7 +35704,7 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>ChannelCmpIntVector0</ItemSymbol>
-        <Value />
+        <Value>INT_FTM0</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ChannelCmpIntPriority0</ItemSymbol>
@@ -35923,7 +35923,7 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>ChannelCmpIntVector1</ItemSymbol>
-        <Value />
+        <Value>INT_FTM0</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ChannelCmpIntPriority1</ItemSymbol>
@@ -36060,7 +36060,7 @@
         <ItemSymbol>Tmg_ChanOffset2</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>init:;prec:5%;RTS:none;clksrc_presc[SpeedMode0]Auto select;clksrc_presc[SpeedMode1]Auto select;clksrc_presc[SpeedMode2]Auto select;clksrc_presc[SpeedMode3]Auto select;clksrc_presc[SpeedMode4]Auto select;clksrc_presc[SpeedMode5]Auto select;clksrc_presc[SpeedMode6]Auto select;clksrc_presc[SpeedMode7]Auto select</Value>
+        <Value>init:0 µs;prec:5%;RTS:none;clksrc_presc[SpeedMode0]Auto select;clksrc_presc[SpeedMode1]Auto select;clksrc_presc[SpeedMode2]Auto select;clksrc_presc[SpeedMode3]Auto select;clksrc_presc[SpeedMode4]Auto select;clksrc_presc[SpeedMode5]Auto select;clksrc_presc[SpeedMode6]Auto select;clksrc_presc[SpeedMode7]Auto select</Value>
         <RuntimeSetting>0</RuntimeSetting>
         <ReqDevPrescHigh>-1</ReqDevPrescHigh>
         <ReqDevPrescLow>-1</ReqDevPrescLow>
@@ -36142,7 +36142,7 @@
       </ItemState>
       <ItemState>
         <ItemSymbol>ChannelCmpIntVector2</ItemSymbol>
-        <Value />
+        <Value>INT_FTM0</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>ChannelCmpIntPriority2</ItemSymbol>
@@ -40836,7 +40836,7 @@
         <ItemSymbol>_Tmg</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>10 ms</Value>
+        <Value>20 µs</Value>
         <RuntimeSetting>0</RuntimeSetting>
         <ReqDevPrescHigh>-1</ReqDevPrescHigh>
         <ReqDevPrescLow>-1</ReqDevPrescLow>
@@ -40862,13 +40862,13 @@
         <ReqSrcClkPrescSpeedMode5>-1</ReqSrcClkPrescSpeedMode5>
         <ReqSrcClkPrescSpeedMode6>-1</ReqSrcClkPrescSpeedMode6>
         <ReqSrcClkPrescSpeedMode7>-1</ReqSrcClkPrescSpeedMode7>
-        <InitValue>10 ms</InitValue>
+        <InitValue>20 us</InitValue>
         <Precision>5.0</Precision>
         <PrecInProc>true</PrecInProc>
         <LowLimit />
         <HighLimit />
         <List lines_count="0" />
-        <UnitText>ms</UnitText>
+        <UnitText>us</UnitText>
         <MinCounterTicks>0</MinCounterTicks>
         <ControlledTimingCfgFromPropertySymbol>IntPeriodTmg</ControlledTimingCfgFromPropertySymbol>
         <ControlledTimingCfgFromComponentRef>InheritedComponent</ControlledTimingCfgFromComponentRef>
@@ -41056,7 +41056,7 @@
               <ItemSymbol>IntPeriodTmg</ItemSymbol>
               <ReadOnly>false</ReadOnly>
               <UserReadOnly>false</UserReadOnly>
-              <Value>init:10 ms;prec:5%;RTS:none;clksrc_presc[SpeedMode0]Auto select;clksrc_presc[SpeedMode1]Auto select;clksrc_presc[SpeedMode2]Auto select;clksrc_presc[SpeedMode3]Auto select;clksrc_presc[SpeedMode4]Auto select;clksrc_presc[SpeedMode5]Auto select;clksrc_presc[SpeedMode6]Auto select;clksrc_presc[SpeedMode7]Auto select</Value>
+              <Value>init:20 µs;prec:5%;RTS:none;clksrc_presc[SpeedMode0]Auto select;clksrc_presc[SpeedMode1]Auto select;clksrc_presc[SpeedMode2]Auto select;clksrc_presc[SpeedMode3]Auto select;clksrc_presc[SpeedMode4]Auto select;clksrc_presc[SpeedMode5]Auto select;clksrc_presc[SpeedMode6]Auto select;clksrc_presc[SpeedMode7]Auto select</Value>
               <RuntimeSetting>0</RuntimeSetting>
               <ReqDevPrescHigh>-1</ReqDevPrescHigh>
               <ReqDevPrescLow>-1</ReqDevPrescLow>
@@ -41082,13 +41082,13 @@
               <ReqSrcClkPrescSpeedMode5>-1</ReqSrcClkPrescSpeedMode5>
               <ReqSrcClkPrescSpeedMode6>-1</ReqSrcClkPrescSpeedMode6>
               <ReqSrcClkPrescSpeedMode7>-1</ReqSrcClkPrescSpeedMode7>
-              <InitValue>10 ms</InitValue>
+              <InitValue>20 us</InitValue>
               <Precision>5.0</Precision>
               <PrecInProc>true</PrecInProc>
               <LowLimit />
               <HighLimit />
               <List lines_count="0" />
-              <UnitText>ms</UnitText>
+              <UnitText>us</UnitText>
               <MinCounterTicks>0</MinCounterTicks>
               <ControlledTimingCfgFromPropertySymbol>Tmg_Period</ControlledTimingCfgFromPropertySymbol>
               <ControlledTimingCfgFromComponentRef>LinkedTimerUnit</ControlledTimingCfgFromComponentRef>
@@ -41860,7 +41860,7 @@
         <ItemSymbol>Tmg_Period</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>init:10 ms;prec:5%;RTS:none;clksrc_presc[SpeedMode0]Auto select;clksrc_presc[SpeedMode1]Auto select;clksrc_presc[SpeedMode2]Auto select;clksrc_presc[SpeedMode3]Auto select;clksrc_presc[SpeedMode4]Auto select;clksrc_presc[SpeedMode5]Auto select;clksrc_presc[SpeedMode6]Auto select;clksrc_presc[SpeedMode7]Auto select</Value>
+        <Value>init:20 µs;prec:5%;RTS:none;clksrc_presc[SpeedMode0]Auto select;clksrc_presc[SpeedMode1]Auto select;clksrc_presc[SpeedMode2]Auto select;clksrc_presc[SpeedMode3]Auto select;clksrc_presc[SpeedMode4]Auto select;clksrc_presc[SpeedMode5]Auto select;clksrc_presc[SpeedMode6]Auto select;clksrc_presc[SpeedMode7]Auto select</Value>
         <RuntimeSetting>0</RuntimeSetting>
         <ReqDevPrescHigh>-1</ReqDevPrescHigh>
         <ReqDevPrescLow>-1</ReqDevPrescLow>
@@ -41886,13 +41886,13 @@
         <ReqSrcClkPrescSpeedMode5>-1</ReqSrcClkPrescSpeedMode5>
         <ReqSrcClkPrescSpeedMode6>-1</ReqSrcClkPrescSpeedMode6>
         <ReqSrcClkPrescSpeedMode7>-1</ReqSrcClkPrescSpeedMode7>
-        <InitValue>10 ms</InitValue>
+        <InitValue>20 us</InitValue>
         <Precision>5.0</Precision>
         <PrecInProc>true</PrecInProc>
         <LowLimit />
         <HighLimit />
         <List lines_count="0" />
-        <UnitText>ms</UnitText>
+        <UnitText>us</UnitText>
         <MinCounterTicks>0</MinCounterTicks>
       </ItemState>
       <ItemState>
@@ -42993,7 +42993,7 @@
           <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
           <BeanType>BitIO</BeanType>
           <Name>CE1</Name>
-          <CompNumb>192</CompNumb>
+          <CompNumb>904</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>BITIO</IconName>
@@ -43588,7 +43588,7 @@
           <ComponentUUID>com.freescale.processorexpert.bitio</ComponentUUID>
           <BeanType>BitIO</BeanType>
           <Name>CSN1</Name>
-          <CompNumb>193</CompNumb>
+          <CompNumb>906</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>BITIO</IconName>
@@ -44241,7 +44241,7 @@
           <ComponentUUID>com.freescale.processorexpert.extint</ComponentUUID>
           <BeanType>ExtInt</BeanType>
           <Name>IRQ1</Name>
-          <CompNumb>196</CompNumb>
+          <CompNumb>908</CompNumb>
           <CompEnabled>true</CompEnabled>
           <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
           <IconName>EXTINT</IconName>
