@@ -65,29 +65,29 @@ void SEM_Deinit(void) {
 
 /*! \brief Initializes module */
 void SEM_Init(void) {
-	BaseType_t check1;
-	xTaskHandle myMaster;
-	BaseType_t check2;
-	xTaskHandle mySlave;
-
-	sem = xSemaphoreCreateBinary();
-
-
-
-
-	check1 = xTaskCreate(vMasterTask,"Master",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&myMaster);
-	if(check1 != pdPASS)
-	{
-		for(;;)
-		{}
-
-	}
-
-	check2 = xTaskCreate(vSlaveTask,"Slave",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&mySlave);
-		if(check2 != pdPASS)
-		{
-			for(;;){}
-		}
+//	BaseType_t check1;
+//	xTaskHandle myMaster;
+//	BaseType_t check2;
+//	xTaskHandle mySlave;
+//
+//	sem = xSemaphoreCreateBinary();
+//
+//
+//
+//
+//	check1 = xTaskCreate(vMasterTask,"Master",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&myMaster);
+//	if(check1 != pdPASS)
+//	{
+//		for(;;)
+//		{}
+//
+//	}
+//
+//	check2 = xTaskCreate(vSlaveTask,"Slave",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&mySlave);
+//		if(check2 != pdPASS)
+//		{
+//			for(;;){}
+//		}
 
 }
 #endif /* PL_CONFIG_HAS_SEMAPHORE */

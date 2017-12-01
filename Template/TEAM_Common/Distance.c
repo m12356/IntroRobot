@@ -11,6 +11,8 @@
 #include "CLS1.h"
 #include "WAIT1.h"
 #include "UTIL1.h"
+#include "RTOS.h"
+#include "FRTOS1.h"
 #if PL_CONFIG_HAS_MOTOR
   #include "Motor.h"
 #endif

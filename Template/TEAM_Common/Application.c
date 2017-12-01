@@ -197,7 +197,7 @@ static void BlinkyTask(void *pvParameters)
 	for(;;)
 	{
 
-		//LED_Neg(1);
+		LED_Neg(1);
 		vTaskDelayUntil(&xLastWakeTime, 500/portTICK_PERIOD_MS);
 
 
@@ -302,9 +302,9 @@ xTaskHandle taskHndl2;
 res2 = xTaskCreate(stayOnLine,"stayOnLine",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl2);
 
 
-BaseType_t res3;
-xTaskHandle taskHndl3;
-res3 = xTaskCreate(goToStart,"goToStart",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl3);
+//BaseType_t res3;
+//xTaskHandle taskHndl3;
+//res3 = xTaskCreate(goToStart,"goToStart",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl3);
 
 vTaskStartScheduler();
  // TRG_SetTrigger (TRG_BOMB_BEEP, 5000/TRG_TICKS_MS , LED_HeartBeat , NULL) ;
