@@ -361,8 +361,8 @@ void DRV_Deinit(void) {
 
 void DRV_Init(void) {
   DRV_Status.mode = DRV_MODE_SPEED;
-  DRV_Status.speed.left = 20;
-  DRV_Status.speed.right = 20;
+  DRV_Status.speed.left = 0;
+  DRV_Status.speed.right = 0;
   DRV_Status.pos.left = 0;
   DRV_Status.pos.right = 0;
   DRV_Queue = FRTOS1_xQueueCreate(QUEUE_LENGTH, QUEUE_ITEM_SIZE);

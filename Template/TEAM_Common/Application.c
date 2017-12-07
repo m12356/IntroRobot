@@ -15,6 +15,7 @@
 #include "Trigger.h"
 #include "KeyDebounce.h"
 #include "CLS1.h"
+#include "Drive.h"
 #include "KIN1.h"
 #if PL_CONFIG_HAS_KEYS
   #include "Keys.h"
@@ -252,23 +253,21 @@ static void stayOnLine(void *pvParameters)
 static void goToStart(void *pvParameters)
 {
 	TickType_t xLastWakeTime =  xTaskGetTickCount();
+	DRV_SetMode(DRV_MODE_SPEED);
 	for(;;)
 	{
 		Q4CLeft_QuadCntrType startPos = Q4CLeft_GetPos();
-		MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),20);
-		MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),20);
+		//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),20);
+		//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),20);
+		DRV_SetSpeed(2000,2000);
 		vTaskDelayUntil(&xLastWakeTime, 3000/portTICK_PERIOD_MS);
-		while(startPos !=Q4CLeft_GetPos())
 
-		{
-			MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),-20);
-			MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),-20);
+			DRV_SetSpeed(-2000,-2000);
+			//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),-20);
+			vTaskDelayUntil(&xLastWakeTime, 3000/portTICK_PERIOD_MS);
+			DRV_SetSpeed(0,0);
 
-		}
-
-			MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),0);
-			MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),0);
-			vTaskDelayUntil(&xLastWakeTime, 10000/portTICK_PERIOD_MS);
+			vTaskDelayUntil(&xLastWakeTime, 3000/portTICK_PERIOD_MS);
 
 
 	}
