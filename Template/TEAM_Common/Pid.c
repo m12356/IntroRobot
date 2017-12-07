@@ -471,11 +471,11 @@ void PID_Init(void) {
   config.speedRightConfig.lastError = 0;
   config.speedRightConfig.integral = 0;
 
-  config.lineFwConfig.pFactor100 = 50;
+  config.lineFwConfig.pFactor100 = 500;
   config.lineFwConfig.iFactor100 = 2;
   config.lineFwConfig.dFactor100 = 20;
   config.lineFwConfig.iAntiWindup = 10000;
-  config.lineFwConfig.maxSpeedPercent = 50;
+  config.lineFwConfig.maxSpeedPercent = 0;
   config.lineFwConfig.lastError = 0;
   config.lineFwConfig.integral = 0;
 

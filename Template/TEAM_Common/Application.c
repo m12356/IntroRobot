@@ -245,7 +245,7 @@ static void stayOnLine(void *pvParameters)
 				vTaskDelayUntil(&xLastWakeTime, 100/portTICK_PERIOD_MS);//war auf 600
 
 			}*/
-			//LF_StartFollowing();
+			LF_StartFollowing();
 
 
 		}
