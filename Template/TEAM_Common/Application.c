@@ -230,18 +230,24 @@ static void stayOnLine(void *pvParameters)
 	{
 		if(REF_IsReady())
 		{
+			/*
 			if(REF_GetLineValue()>500)
 			{
-				MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),20);
-				MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),20);
+				//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),20);
+				//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),20);
+				DRV_SetSpeed(2000,2000);
 			}
 			else
 			{
-				MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),-40);
-				MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),40);
-				vTaskDelayUntil(&xLastWakeTime, 600/portTICK_PERIOD_MS);
+				DRV_SetSpeed(-2000,2000);
+				//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),-40);
+				//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),40);
+				vTaskDelayUntil(&xLastWakeTime, 100/portTICK_PERIOD_MS);//war auf 600
 
-			}
+			}*/
+			//LF_StartFollowing();
+
+
 		}
 
 		vTaskDelayUntil(&xLastWakeTime, 100/portTICK_PERIOD_MS);
@@ -283,7 +289,7 @@ void APP_Start(void) {
 
 BaseType_t res;
 xTaskHandle taskHndl;
-res = xTaskCreate(BlinkyTask,"Blinky",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl);
+res = xTaskCreate(BlinkyTask,"Blinky",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY+1,&taskHndl);
 if(res != pdPASS)
 {
 
@@ -291,15 +297,16 @@ if(res != pdPASS)
 
 BaseType_t res1;
 xTaskHandle taskHndl1;
-res1 = xTaskCreate(Startup,"Startup",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl1);
+res1 = xTaskCreate(Startup,"Startup",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY+2,&taskHndl1);
 if(res1 != pdPASS)
 {
 
 }
 
+
 BaseType_t res2;
 xTaskHandle taskHndl2;
-res2 = xTaskCreate(stayOnLine,"stayOnLine",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl2);
+res2 = xTaskCreate(stayOnLine,"stayOnLine",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY+1,&taskHndl2);
 
 
 //BaseType_t res3;

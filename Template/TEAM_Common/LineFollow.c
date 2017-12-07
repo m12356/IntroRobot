@@ -119,7 +119,7 @@ static void StateMachine(void) {
 
     case STATE_STOP:
 #if 1
-      RNETA_SendSignal('C'); /*! \todo */
+      //RNETA_SendSignal('C'); /*! \todo */
 #endif
       SHELL_SendString("Stopped!\r\n");
       TURN_Turn(TURN_STOP, NULL);
@@ -140,7 +140,7 @@ static void LineTask (void *pvParameters) {
     (void)xTaskNotifyWait(0UL, LF_START_FOLLOWING|LF_STOP_FOLLOWING, &notifcationValue, 0); /* check flags */
     if (notifcationValue&LF_START_FOLLOWING) {
 #if 1
-      RNETA_SendSignal('B'); /*! \todo */
+     // RNETA_SendSignal('B'); /*! \todo */
 #endif
       DRV_SetMode(DRV_MODE_NONE); /* disable any drive mode */
       PID_Start();
@@ -209,7 +209,7 @@ void LF_Deinit(void) {
 
 void LF_Init(void) {
   LF_currState = STATE_IDLE;
-  if (xTaskCreate(LineTask, "Line", 400/sizeof(StackType_t), NULL, tskIDLE_PRIORITY, &LFTaskHandle) != pdPASS) {
+  if (xTaskCreate(LineTask, "Line", 400/sizeof(StackType_t), NULL, tskIDLE_PRIORITY+2, &LFTaskHandle) != pdPASS) {
     for(;;){} /* error */
   }
 }
