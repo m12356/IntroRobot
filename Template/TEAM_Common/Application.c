@@ -15,7 +15,7 @@
 #include "Trigger.h"
 #include "KeyDebounce.h"
 #include "CLS1.h"
-#include "Drive.h"
+
 #include "KIN1.h"
 #if PL_CONFIG_HAS_KEYS
   #include "Keys.h"
@@ -98,7 +98,8 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_SW1_PRESSED:
 	  LED2_Neg();
     BtnMsg(1, "pressed");
-    setStateToCalibrateByButton();
+    LF_StartStopFollowing();
+    //setStateToCalibrateByButton();
 
      break;
   case EVNT_SW1_LPRESSED:
@@ -245,7 +246,7 @@ static void stayOnLine(void *pvParameters)
 				vTaskDelayUntil(&xLastWakeTime, 100/portTICK_PERIOD_MS);//war auf 600
 
 			}*/
-			LF_StartFollowing();
+
 
 
 		}
@@ -259,9 +260,9 @@ static void stayOnLine(void *pvParameters)
 static void goToStart(void *pvParameters)
 {
 	TickType_t xLastWakeTime =  xTaskGetTickCount();
-	DRV_SetMode(DRV_MODE_SPEED);
+	//DRV_SetMode(DRV_MODE_SPEED);
 	for(;;)
-	{
+	{/*
 		Q4CLeft_QuadCntrType startPos = Q4CLeft_GetPos();
 		//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),20);
 		//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),20);
@@ -272,7 +273,7 @@ static void goToStart(void *pvParameters)
 			//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),-20);
 			vTaskDelayUntil(&xLastWakeTime, 3000/portTICK_PERIOD_MS);
 			DRV_SetSpeed(0,0);
-
+*/
 			vTaskDelayUntil(&xLastWakeTime, 3000/portTICK_PERIOD_MS);
 
 
@@ -289,7 +290,7 @@ void APP_Start(void) {
 
 BaseType_t res;
 xTaskHandle taskHndl;
-res = xTaskCreate(BlinkyTask,"Blinky",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY+1,&taskHndl);
+res = xTaskCreate(BlinkyTask,"Blinky",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl);
 if(res != pdPASS)
 {
 
@@ -297,7 +298,7 @@ if(res != pdPASS)
 
 BaseType_t res1;
 xTaskHandle taskHndl1;
-res1 = xTaskCreate(Startup,"Startup",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY+2,&taskHndl1);
+res1 = xTaskCreate(Startup,"Startup",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl1);
 if(res1 != pdPASS)
 {
 

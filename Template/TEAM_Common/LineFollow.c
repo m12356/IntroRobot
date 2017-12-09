@@ -95,7 +95,7 @@ static void StateMachine(void) {
       if (!FollowSegment()) {
         //SHELL_SendString((unsigned char*)"No line, stopped!\r\n");
         //LF_currState = STATE_STOP; /* stop if we do not have a line any more */
-        LF_currState = STATE_TURN;
+       // LF_currState = STATE_TURN;
       }
       break;
 
@@ -103,7 +103,20 @@ static void StateMachine(void) {
       lineKind = REF_GetLineKind();
       if (lineKind==REF_LINE_FULL) {
         LF_currState = STATE_FINISHED;
-      } if (lineKind==REF_LINE_NONE) {
+
+      }
+      if (lineKind==REF_LINE_LEFT){
+    	  TURN_Turn(TURN_LEFT45,NULL);
+    	  DRV_SetMode(DRV_MODE_POS);
+     	  LF_currState = STATE_FOLLOW_SEGMENT;
+      }
+      if (lineKind==REF_LINE_RIGHT){
+    	  TURN_Turn(TURN_RIGHT45,NULL);
+    	  DRV_SetMode(DRV_MODE_POS);
+    	  LF_currState = STATE_FOLLOW_SEGMENT;
+      }
+
+      if (lineKind==REF_LINE_NONE) {
         TURN_Turn(TURN_LEFT180, NULL);
         DRV_SetMode(DRV_MODE_NONE); /* disable position mode */
         LF_currState = STATE_FOLLOW_SEGMENT;
@@ -150,7 +163,7 @@ static void LineTask (void *pvParameters) {
       LF_currState = STATE_STOP;
     }
     StateMachine();
-    FRTOS1_vTaskDelay(5/portTICK_PERIOD_MS);
+    FRTOS1_vTaskDelay(2/portTICK_PERIOD_MS);
   }
 }
 
@@ -209,7 +222,7 @@ void LF_Deinit(void) {
 
 void LF_Init(void) {
   LF_currState = STATE_IDLE;
-  if (xTaskCreate(LineTask, "Line", 400/sizeof(StackType_t), NULL, tskIDLE_PRIORITY+2, &LFTaskHandle) != pdPASS) {
+  if (xTaskCreate(LineTask, "Line", 400/sizeof(StackType_t), NULL, tskIDLE_PRIORITY+4, &LFTaskHandle) != pdPASS) {
     for(;;){} /* error */
   }
 }
