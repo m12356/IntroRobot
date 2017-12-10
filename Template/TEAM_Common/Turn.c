@@ -52,6 +52,8 @@ static int32_t TURN_StepsPostLine = TURN_STEPS_POST_LINE;
  */
 const unsigned char *TURN_TurnKindStr(TURN_Kind kind) {
   switch(kind) {
+    case TURN_LEFT15:				  return (const unsigned char*)"LEFT15";
+    case TURN_RIGHT15:				  return (const unsigned char*)"TUNRN_RIGHT15";
     case TURN_LEFT45:                 return (const unsigned char*)"LEFT45";
     case TURN_LEFT90:                 return (const unsigned char*)"LEFT90";
     case TURN_RIGHT45:                return (const unsigned char*)"RIGHT45";
@@ -126,6 +128,12 @@ static void StepsTurn(int32_t stepsL, int32_t stepsR, TURN_StopFct stopIt, int32
 
 void TURN_Turn(TURN_Kind kind, TURN_StopFct stopIt) {
   switch(kind) {
+  	case TURN_LEFT15:
+	  StepsTurn(-TURN_Steps90/6, TURN_Steps90/6, stopIt, TURN_STEPS_90_TIMEOUT_MS/2);
+	break;
+  	case TURN_RIGHT15:
+  		 StepsTurn(TURN_Steps90/6, -TURN_Steps90/6, stopIt, TURN_STEPS_90_TIMEOUT_MS/2);
+  		break;
     case TURN_LEFT45:
       StepsTurn(-TURN_Steps90/2, TURN_Steps90/2, stopIt, TURN_STEPS_90_TIMEOUT_MS/2);
       break;
