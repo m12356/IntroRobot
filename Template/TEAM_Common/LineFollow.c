@@ -81,9 +81,38 @@ static bool FollowSegment(void) {
 	  return TRUE;
   }
   if(currLineKind==REF_LINE_NONE){
-	  LF_currState = STATE_STOP;
-	  return FALSE;
+	  TURN_Turn(TURN_RIGHT45, NULL);
+	 DRV_SetMode(DRV_MODE_NONE); // disable position mode
+	 if(REF_GetLineValue() == REF_LINE_NONE){
+		 TURN_Turn(TURN_LEFT90, NULL);
+		 	 DRV_SetMode(DRV_MODE_NONE); // disable position mode
+		 	 if(REF_GetLineValue() == REF_LINE_NONE)
+		 	 {
+		 LF_currState = STATE_STOP;
+	  return FALSE;}}
+	 else
+	 {
+		 LF_currState =STATE_FOLLOW_SEGMENT;
+	 }
   }
+  if (currLine==REF_LINE_LEFT){
+      	  TURN_Turn(TURN_LEFT45,NULL);
+      	  DRV_SetMode(DRV_MODE_POS);
+       	  LF_currState = STATE_FOLLOW_SEGMENT;
+       	  return FALSE;
+        }
+        if (currLine==REF_LINE_RIGHT){
+      	  TURN_Turn(TURN_RIGHT45,NULL);
+      	  DRV_SetMode(DRV_MODE_POS);
+      	  LF_currState = STATE_FOLLOW_SEGMENT;
+      	  return FALSE;
+        }
+        if (currLine==REF_LINE_NONE) {
+               TURN_Turn(TURN_RIGHT45, NULL);
+               DRV_SetMode(DRV_MODE_NONE); // disable position mode
+               LF_currState = STATE_FOLLOW_SEGMENT;
+             }
+
   if (currLineKind==REF_LINE_STRAIGHT) {
     PID_Line(currLine, REF_MIDDLE_LINE_VALUE); /* move along the line */
     return TRUE;
@@ -104,6 +133,10 @@ static void StateMachine(void) {
         //SHELL_SendString((unsigned char*)"No line, stopped!\r\n");
         //LF_currState = STATE_STOP; /* stop if we do not have a line any more */
        // LF_currState = STATE_TURN;
+      }
+      else
+      {
+
       }
       break;
 
