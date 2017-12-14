@@ -76,6 +76,14 @@ static bool FollowSegment(void) {
 
   currLine = REF_GetLineValue();
   currLineKind = REF_GetLineKind();
+  if(currLineKind==REF_LINE_FULL){
+	  LF_currState = STATE_TURN;
+	  return TRUE;
+  }
+  if(currLineKind==REF_LINE_NONE){
+	  LF_currState = STATE_STOP;
+	  return FALSE;
+  }
   if (currLineKind==REF_LINE_STRAIGHT) {
     PID_Line(currLine, REF_MIDDLE_LINE_VALUE); /* move along the line */
     return TRUE;
@@ -100,7 +108,13 @@ static void StateMachine(void) {
       break;
 
     case STATE_TURN:
-      lineKind = REF_GetLineKind();
+
+       TURN_Turn(TURN_LEFT180, NULL);
+
+        DRV_SetMode(DRV_MODE_NONE);
+        LF_currState = STATE_FOLLOW_SEGMENT;
+        /*
+ lineKind = REF_GetLineKind();
       if (lineKind==REF_LINE_FULL) {
         LF_currState = STATE_FINISHED;
 
@@ -118,11 +132,11 @@ static void StateMachine(void) {
 
       if (lineKind==REF_LINE_NONE) {
         TURN_Turn(TURN_LEFT180, NULL);
-        DRV_SetMode(DRV_MODE_NONE); /* disable position mode */
+        DRV_SetMode(DRV_MODE_NONE); // disable position mode
         LF_currState = STATE_FOLLOW_SEGMENT;
       } else {
         LF_currState = STATE_STOP;
-      }
+      } */
       break;
 
     case STATE_FINISHED:
@@ -163,7 +177,7 @@ static void LineTask (void *pvParameters) {
       LF_currState = STATE_STOP;
     }
     StateMachine();
-    FRTOS1_vTaskDelay(2/portTICK_PERIOD_MS);
+    FRTOS1_vTaskDelay(4/portTICK_PERIOD_MS);
   }
 }
 
