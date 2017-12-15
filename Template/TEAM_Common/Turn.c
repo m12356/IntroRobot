@@ -28,7 +28,7 @@
 
 /*! \todo adopt the values for your robot */
 #if 0
-#define TURN_STEPS_90         400
+#define TURN_STEPS_90         720
 #else
 #define TURN_STEPS_90         720
 

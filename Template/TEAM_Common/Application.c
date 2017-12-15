@@ -15,6 +15,17 @@
 #include "Trigger.h"
 #include "KeyDebounce.h"
 #include "CLS1.h"
+#include "Turn.h"
+#include "Drive.h"
+#include "Distance.h"
+  #include "VL6180X.h"
+  #include "GI2C1.h"
+  #include "TofPwr.h"
+  #include "TofCE1.h"
+  #include "TofCE2.h"
+  #include "TofCE3.h"
+  #include "TofCE4.h"
+#include "Buzzer.h"
 
 #include "KIN1.h"
 #if PL_CONFIG_HAS_KEYS
@@ -98,7 +109,9 @@ void APP_EventHandler(EVNT_Handle event) {
   case EVNT_SW1_PRESSED:
 	  LED2_Neg();
     BtnMsg(1, "pressed");
-    LF_StartStopFollowing();
+    setStartSumo(1);
+    BUZ_Beep(700,100);
+    //LF_StartStopFollowing();
     //setStateToCalibrateByButton();
 
      break;
@@ -191,6 +204,30 @@ static void APP_AdoptToHardware(void) {
 #endif
 }
 
+int startSumo = 0;
+int globalStart = 0;
+
+int getGlobalStart()
+{
+	return globalStart;
+}
+
+void setGlobalStart(int value)
+{
+	globalStart = value;
+}
+
+int getStartSumo()
+{
+	return startSumo;
+}
+
+void setStartSumo(int value)
+{
+	startSumo = value;
+}
+
+
 
 
 static void BlinkyTask(void *pvParameters)
@@ -227,32 +264,67 @@ static void stayOnLine(void *pvParameters)
 {
 
 	TickType_t xLastWakeTime =  xTaskGetTickCount();
+
 	for(;;)
 	{
+		if(getStartSumo() == 1){
+
+
+
+			if(getGlobalStart() == 0)
+			{
+				WAIT1_Waitms(750);
+			}
+
+				setGlobalStart(1);
+
+
 		if(REF_IsReady())
 		{
-			/*
-			if(REF_GetLineValue()>500)
+
+			if(REF_GetLineKind() == REF_LINE_FULL)
 			{
-				//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),20);
-				//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),20);
-				DRV_SetSpeed(2000,2000);
+				if(DIST_GetDistance(DIST_SENSOR_FRONT) == -1){
+				DRV_SetSpeed(6000,6000);
+				}
+				if(DIST_GetDistance(DIST_SENSOR_FRONT) < 350 && DIST_GetDistance(DIST_SENSOR_FRONT) > 0){
+					BUZ_Beep(1000,100);
+					DRV_SetSpeed(10000,10000);
+					//My_BombBeep();
+				}
+				if(DIST_GetDistance(DIST_SENSOR_RIGHT) < 350 && DIST_GetDistance(DIST_SENSOR_RIGHT) > 0){
+					//DRV_SetSpeed(10000,10000);
+					TURN_Turn(TURN_RIGHT90,NULL);
+					DRV_SetMode(DRV_MODE_SPEED);
+				}
+				if(DIST_GetDistance(DIST_SENSOR_LEFT) < 350 && DIST_GetDistance(DIST_SENSOR_LEFT) > 0){
+									//DRV_SetSpeed(10000,10000);
+									TURN_Turn(TURN_LEFT90,NULL);
+									DRV_SetMode(DRV_MODE_SPEED);
+
+								}
+
+				if(DIST_GetDistance(DIST_SENSOR_REAR) < 300 && DIST_GetDistance(DIST_SENSOR_REAR) > 0){
+													TURN_Turn(TURN_LEFT180,NULL);
+													DRV_SetMode(DRV_MODE_SPEED);
+													//DRV_SetSpeed(-10000,-10000);
+												}
+
 			}
 			else
 			{
+
+				//TURN_Turn(TURN_LEFT45,NULL);
 				DRV_SetSpeed(-2000,2000);
-				//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_LEFT),-40);
-				//MOT_SetSpeedPercent(MOT_GetMotorHandle(MOT_MOTOR_RIGHT),40);
-				vTaskDelayUntil(&xLastWakeTime, 100/portTICK_PERIOD_MS);//war auf 600
+				DRV_SetMode(DRV_MODE_SPEED);
+				vTaskDelayUntil(&xLastWakeTime, 600/portTICK_PERIOD_MS);
 
-			}*/
-
-
+			}
+		}
 
 		}
 
-		vTaskDelayUntil(&xLastWakeTime, 100/portTICK_PERIOD_MS);
-
+		vTaskDelayUntil(&xLastWakeTime, 5/portTICK_PERIOD_MS);
 	}
 }
 
@@ -290,7 +362,7 @@ void APP_Start(void) {
 
 BaseType_t res;
 xTaskHandle taskHndl;
-res = xTaskCreate(BlinkyTask,"Blinky",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl);
+res = xTaskCreate(BlinkyTask,"Blinky",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY+3,&taskHndl);
 if(res != pdPASS)
 {
 
@@ -298,7 +370,7 @@ if(res != pdPASS)
 
 BaseType_t res1;
 xTaskHandle taskHndl1;
-res1 = xTaskCreate(Startup,"Startup",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY,&taskHndl1);
+res1 = xTaskCreate(Startup,"Startup",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY+3,&taskHndl1);
 if(res1 != pdPASS)
 {
 
@@ -307,7 +379,7 @@ if(res1 != pdPASS)
 
 BaseType_t res2;
 xTaskHandle taskHndl2;
-res2 = xTaskCreate(stayOnLine,"stayOnLine",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY+1,&taskHndl2);
+res2 = xTaskCreate(stayOnLine,"stayOnLine",configMINIMAL_STACK_SIZE+50,(void*)NULL,tskIDLE_PRIORITY+4,&taskHndl2);
 
 
 //BaseType_t res3;
