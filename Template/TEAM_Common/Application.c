@@ -273,7 +273,7 @@ static void stayOnLine(void *pvParameters)
 
 			if(getGlobalStart() == 0)
 			{
-				WAIT1_Waitms(750);
+				WAIT1_Waitms(800);
 			}
 
 				setGlobalStart(1);
