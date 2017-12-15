@@ -294,12 +294,33 @@ static void stayOnLine(void *pvParameters)
 				}
 				if(DIST_GetDistance(DIST_SENSOR_RIGHT) < 350 && DIST_GetDistance(DIST_SENSOR_RIGHT) > 0){
 					//DRV_SetSpeed(10000,10000);
-					TURN_Turn(TURN_RIGHT90,NULL);
+					TURN_Turn(TURN_RIGHT45,NULL);
+					if(DIST_GetDistance(DIST_SENSOR_FRONT) < 350 && DIST_GetDistance(DIST_SENSOR_FRONT) > 0)
+														{
+															DRV_SetSpeed(10000,10000);
+
+														}else
+														{
+
+															TURN_Turn(TURN_RIGHT45,NULL);
+
+														}
 					DRV_SetMode(DRV_MODE_SPEED);
 				}
 				if(DIST_GetDistance(DIST_SENSOR_LEFT) < 350 && DIST_GetDistance(DIST_SENSOR_LEFT) > 0){
 									//DRV_SetSpeed(10000,10000);
-									TURN_Turn(TURN_LEFT90,NULL);
+									TURN_Turn(TURN_LEFT45,NULL);
+									if(DIST_GetDistance(DIST_SENSOR_FRONT) < 350 && DIST_GetDistance(DIST_SENSOR_FRONT) > 0)
+									{
+										DRV_SetSpeed(10000,10000);
+
+									}else
+									{
+
+										TURN_Turn(TURN_LEFT45,NULL);
+
+									}
+
 									DRV_SetMode(DRV_MODE_SPEED);
 
 								}
