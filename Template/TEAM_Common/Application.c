@@ -287,14 +287,14 @@ static void stayOnLine(void *pvParameters)
 				if(DIST_GetDistance(DIST_SENSOR_FRONT) == -1){
 				DRV_SetSpeed(6000,6000);
 				}
-				if(DIST_GetDistance(DIST_SENSOR_FRONT) < 350 && DIST_GetDistance(DIST_SENSOR_FRONT) > 0){
+				if(DIST_GetDistance(DIST_SENSOR_FRONT) < 250 && DIST_GetDistance(DIST_SENSOR_FRONT) > 0){
 					BUZ_Beep(1000,100);
 					DRV_SetSpeed(10000,10000);
 					//My_BombBeep();
 				}
-				if(DIST_GetDistance(DIST_SENSOR_RIGHT) < 350 && DIST_GetDistance(DIST_SENSOR_RIGHT) > 0){
+				if(DIST_GetDistance(DIST_SENSOR_RIGHT) < 250 && DIST_GetDistance(DIST_SENSOR_RIGHT) > 0){
 					//DRV_SetSpeed(10000,10000);
-					TURN_Turn(TURN_RIGHT45,NULL);
+					TURN_Turn(TURN_RIGHT90,NULL);
 					if(DIST_GetDistance(DIST_SENSOR_FRONT) < 350 && DIST_GetDistance(DIST_SENSOR_FRONT) > 0)
 														{
 															DRV_SetSpeed(10000,10000);
@@ -305,11 +305,11 @@ static void stayOnLine(void *pvParameters)
 															TURN_Turn(TURN_RIGHT45,NULL);
 
 														}
-					DRV_SetMode(DRV_MODE_SPEED);
+														DRV_SetMode(DRV_MODE_SPEED);
 				}
-				if(DIST_GetDistance(DIST_SENSOR_LEFT) < 350 && DIST_GetDistance(DIST_SENSOR_LEFT) > 0){
+				if(DIST_GetDistance(DIST_SENSOR_LEFT) < 250 && DIST_GetDistance(DIST_SENSOR_LEFT) > 0){
 									//DRV_SetSpeed(10000,10000);
-									TURN_Turn(TURN_LEFT45,NULL);
+									TURN_Turn(TURN_LEFT90,NULL);
 									if(DIST_GetDistance(DIST_SENSOR_FRONT) < 350 && DIST_GetDistance(DIST_SENSOR_FRONT) > 0)
 									{
 										DRV_SetSpeed(10000,10000);
@@ -325,7 +325,7 @@ static void stayOnLine(void *pvParameters)
 
 								}
 
-				if(DIST_GetDistance(DIST_SENSOR_REAR) < 300 && DIST_GetDistance(DIST_SENSOR_REAR) > 0){
+				if(DIST_GetDistance(DIST_SENSOR_REAR) < 250 && DIST_GetDistance(DIST_SENSOR_REAR) > 0){
 													TURN_Turn(TURN_LEFT180,NULL);
 													DRV_SetMode(DRV_MODE_SPEED);
 													//DRV_SetSpeed(-10000,-10000);
@@ -335,10 +335,24 @@ static void stayOnLine(void *pvParameters)
 			else
 			{
 
+				/*if (REF_GetLineKind() ==REF_LINE_LEFT){
+				    	  TURN_Turn(TURN_RIGHT90,NULL);
+				    	  DRV_SetMode(DRV_MODE_SPEED);
+
+				      }
+
+				if (REF_GetLineKind() ==REF_LINE_RIGHT){
+								    	  TURN_Turn(TURN_LEFT90,NULL);
+								    	  DRV_SetMode(DRV_MODE_POS);
+								    	  DRV_SetMode(DRV_MODE_SPEED);
+
+								      }*/
+
+
 				//TURN_Turn(TURN_LEFT45,NULL);
 				DRV_SetSpeed(-2000,2000);
 				DRV_SetMode(DRV_MODE_SPEED);
-				vTaskDelayUntil(&xLastWakeTime, 600/portTICK_PERIOD_MS);
+				vTaskDelayUntil(&xLastWakeTime, 700/portTICK_PERIOD_MS);
 
 			}
 		}
